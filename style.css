@@ -12,23 +12,10 @@ img {
 body {
     display: grid;
     grid-template-areas: 
-        "aside header header header header header header header"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        "aside main main main main main main main"
-        ;
-    grid-template-columns: repeat(autofit, minmax(200px, 5fr));
-    grid-template-rows: auto;
+        "aside header"
+        "aside main";
+    grid-template-columns: 260px 1fr; /* Explicit sidebar width */
+    grid-template-rows: auto 1fr;
     height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -117,5 +104,53 @@ header {
 
 main {
     background-color: lightpink;
+    display: grid;
     grid-area: main;
+}
+.main-content {
+    display: grid;
+    /* This defines two columns: the left takes up 3 parts of space, the right takes up 1 */
+    grid-template-columns: 3fr 1fr; 
+    grid-template-areas: "main-left main-right";
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #f0f2f5; /* A light grey background often looks better for dashboards */
+}
+.main-left {
+    grid-area: main-left;
+    display: grid;
+    /* This creates the two-column layout you requested */
+    grid-template-columns: 1fr 1fr; 
+    gap: 1rem;
+    align-content: start; /* Keeps items at the top if the container is taller */
+}
+.main-left h3 {
+    grid-column: 1 / -1; 
+}
+.left-card {
+    background-color: white;
+    border-radius: 10px; /* Adjusted from 30px for a more standard dashboard look */
+    padding: 2rem 1rem;
+    border-left: 8px solid orange; /* Optional: adds the accent bar seen in many dashboards */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.main-right {
+    grid-area: main-right;
+    display: flex; /* Flexbox is often easier for simple vertical stacks */
+    flex-direction: column;
+    gap: 2rem;
+}
+.announcement-section, 
+.trending-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem; /* Space between the H3 and the white box */
+}
+.right-top, 
+.right-bot {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    min-height: 300px; /* Ensures visibility while empty */
 }
