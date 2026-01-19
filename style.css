@@ -14,7 +14,7 @@ body {
     grid-template-areas: 
         "aside header"
         "aside main";
-    grid-template-columns: 260px 1fr; /* Explicit sidebar width */
+    grid-template-columns: 20% 1fr; /* Explicit sidebar width */
     grid-template-rows: auto 1fr;
     height: 100vh;
     font-family: Arial, Helvetica, sans-serif;
@@ -109,42 +109,41 @@ main {
 }
 .main-content {
     display: grid;
-    /* This defines two columns: the left takes up 3 parts of space, the right takes up 1 */
     grid-template-columns: 3fr 1fr; 
     grid-template-areas: "main-left main-right";
     gap: 2rem;
-    padding: 2rem;
-    background-color: #f0f2f5; /* A light grey background often looks better for dashboards */
+    padding: 2rem 2rem 3rem 2rem;
+    background-color: #f0f2f5;
 }
 .main-left {
     grid-area: main-left;
     display: grid;
-    /* This creates the two-column layout you requested */
     grid-template-columns: 1fr 1fr; 
     gap: 1rem;
-    align-content: start; /* Keeps items at the top if the container is taller */
+    align-content: start;
 }
 .main-left h3 {
     grid-column: 1 / -1; 
 }
 .left-card {
     background-color: white;
-    border-radius: 10px; /* Adjusted from 30px for a more standard dashboard look */
-    padding: 2rem 1rem;
-    border-left: 8px solid orange; /* Optional: adds the accent bar seen in many dashboards */
+    border-radius: 10px;
+    padding: 3rem 1rem;
+    border-left: 8px solid orange;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
 .main-right {
     grid-area: main-right;
-    display: flex; /* Flexbox is often easier for simple vertical stacks */
+    display: flex; 
     flex-direction: column;
     gap: 2rem;
+    justify-content: space-between;
 }
 .announcement-section, 
 .trending-section {
     display: flex;
     flex-direction: column;
-    gap: 1rem; /* Space between the H3 and the white box */
+    gap: 1rem;
 }
 .right-top, 
 .right-bot {
@@ -153,4 +152,39 @@ main {
     padding: 1.5rem;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     min-height: 300px; /* Ensures visibility while empty */
+}
+.right-top div:nth-child(2) {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    margin: 1rem 0;
+    padding: 1rem 0;
+}
+.announcement-section {
+    font-size: 1rem;
+}
+.announcement-section br {
+    width: 100%;
+    border: 1px solid black;
+}
+h4 {
+    display:inline;
+}
+h4:after {
+    content:"\a";
+    white-space: pre;
+}
+.right-bot {
+    border-radius: 10px;
+    padding: 1.5rem;
+    min-height: 300px; /* Important: gives the container height to space items out */
+    
+    /* Flexbox Layout */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* This pushes the items apart evenly */
+}
+.right-bot .right-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
